@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hit and Blow</title>
+</head>
+<body>
+    <h1>Hit and Blow</h1>
+    {% if not game.is_finished %}
+    <h2>{{ game.attempts | add:1 }}回目の予想</h2>
+    <form action="{% url 'hitandblow:play' %}" method="post">
+        {% csrf_token %}
+        <table>
+            <tbody>
+                {{ form.as_table }}
+            </tbody>
+        </table>
+        <button type="submit">回答</button>
+    </form>
+    {% else %}
+    <p>正解！</p>
+    <p>もう一度プレイする場合は<a href="{% url 'hitandblow:play' %}">ココ</a>をクリック</p>
+    {% endif %}
+
+    {% if guesses|length != 0 %}
+    <h2>回答履歴</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>思考回数</th>
+                <th>予想した数字</th>
+                <th>Hit数</th>
+                <th>Blow数</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for guess in guesses %}
+            <tr>
+                <td>{{ guess.attempts }}</td>
+                <td>{{ guess.number }}</td>
+                <td>{{ guess.hit }}</td>
+                <td>{{ guess.blow }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    <form action="{% url 'accounts:logout' %}" method="post" style="text-align: left;">
+        {% csrf_token %}
+        <button type="submit">ログアウト</button>
+    </form>
+</body>
+</html>
