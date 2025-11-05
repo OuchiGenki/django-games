@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'HitAndBlow',
+    'othello',
     'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
