@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ランキング</title>
+</head>
+<body>
+    <h1>ランキング</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ユーザー</th>
+                <th>平均試行回数</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ranking in rankings %}
+            <tr>
+                <td>{{ ranking.user.username }}</td>
+                <td>{{ ranking.avg_attempts }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
