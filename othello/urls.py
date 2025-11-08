@@ -6,5 +6,5 @@ app_name = 'othello'
 urlpatterns = [
     path('', views.index, name='index'),
     path('new/', views.new, name='new'),
-    path('play/', views.play, name='play'),
+    path('play/<int:game_id>/', views.play, name='play'),
 ]

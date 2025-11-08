@@ -1,0 +1,42 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, 50px);
+  grid-template-rows: repeat(8, 50px);
+  gap: 2px;
+  margin: 0 auto;
+}
+
+.cell {
+  width: 50px;
+  height: 50px;
+  background-color: #2e7d32;
+  position: relative;
+  padding: 0;
+  border: none;
+}
+
+.cell-button {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.piece-black, .piece-white {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.piece-black {
+  background-color: black;
+}
+
+.piece-white {
+  background-color: white;
+}
