@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}オセロ{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'othello/play.css' %}">
+{% endblock %}
+
+{% block content %}
+<body class="bg-light">
+  <div class="container py-4">
+    <h1 class="text-center mb-4">オセロ</h1>
+
+    <div class="d-flex justify-content-between mb-3">
+      <div class="alert alert-dark">BLACK: {{ black_count }}</div>
+      <div class="alert alert-secondary">WHITE: {{ white_count }}</div>
+    </div>
+
+    <div class="text-center mb-3">
+        {% if game.finished %}
+            <span class="ms-2 text-danger">（ゲーム終了）</span>
+            <span class="ms-2">勝者: {{ game.winner }}</span>
+        {% else %}
+            <p class="mb-0">現在の手番:
+            {% if game.current_turn == 'B' %}
+                <span class="badge bg-dark text-white ms-2">黒</span>
+            {% elif game.current_turn == 'W' %}
+                <span class="badge bg-light text-dark border ms-2">白</span>
+            {% else %}
+                <span class="ms-2">なし</span>
+            {% endif %}
+        {% endif %}
+      </p>
+    </div>
+
+    <div class="board justify-content-center">
+        {% for row in game.board %}
+        {% for cell in row %}
+            <form method="POST" action="{% url 'othello:play' game.id %}">
+                {% csrf_token %}
+                <input type="hidden" name="row" value="{{ forloop.parentloop.counter0 }}">
+                <input type="hidden" name="col" value="{{ forloop.counter0 }}">
+                <button class="cell" type="submit">
+                {% if cell == 'B' %}
+                    <div class="piece-black"></div>
+                {% elif cell == 'W' %}
+                    <div class="piece-white"></div>
+                {% endif %}
+                </button>
+            </form>
+        {% endfor %}
+        {% endfor %}
+    </div>
+
+    <div class="text-center mt-4">
+      <a class="btn btn-primary" href="{% url 'othello:index' %}">戻る</a>
+    </div>
+  </div>
+</body>
+{% endblock %}
