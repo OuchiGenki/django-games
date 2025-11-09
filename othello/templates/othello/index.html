@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}オセロ{% endblock %}
+
+{% block content %}
+<!-- Othello トップ ヒーローセクション -->
+<div class="bg-white shadow-sm rounded p-4 mb-4">
+  <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between">
+    <div>
+      <h1 class="h3 mb-1">Othello（オセロ）</h1>
+      <p class="text-muted mb-0">シンプルなオセロゲーム</p>
+      <p class="small text-muted mb-0">ルール: 盤面に自分の色の石で相手の石を挟むと反転します。盤面がぜんぶ埋まるか、黒白ともに打つマスがなくなったら、終局です</p>
+    </div>
+    <div class="mt-3 mt-md-0">
+      <a href="{% url 'othello:new' %}" class="btn btn-primary me-2">新しいゲームを始める</a>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="h5 mb-0">ゲーム一覧</h2>
+</div>
+
+<hr>
+
+{% if games %}
+<ul class="list-group">
+    {% for game in games %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+            Othello ゲーム {{ game.id }} - {{ game.created_at|date:"Y-m-d H:i" }}
+        </div>
+        <a href="{% url 'othello:play' game_id=game.id %}" class="btn btn-sm btn-outline-primary">続ける</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p class="text-muted">まだゲームはありません。</p>
+{% endif %}
+
+<div class="my-4"></div>
+
+<div id="finished" class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="h5 mb-0">終了済みゲーム一覧</h2>
+</div>
+
+<hr>
+
+{% if finished_games %}
+<ul class="list-group">
+    {% for game in finished_games %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+            ゲーム {{ game.id }} - {{ game.created_at|date:"Y-m-d H:i" }}
+        </div>
+        <a href="{% url 'othello:play' game_id=game.id %}" class="btn btn-sm btn-outline-primary">履歴</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p class="text-muted">終了済みのゲームはありません。</p>
+{% endif %}
+
+{% endblock %}
