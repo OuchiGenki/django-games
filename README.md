@@ -6,6 +6,7 @@ Django で作成したミニゲーム集（ポートフォリオ）です。\
 現在実装済みのゲーム:
 
 -   Othello（オセロ）
+<img width="1440" height="790" alt="Image" src="https://github.com/user-attachments/assets/b38f8cb9-2ea1-4207-8202-9b452ec22c5a" />
 -   Hit & Blow
 
 ------------------------------------------------------------------------
