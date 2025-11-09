@@ -62,7 +62,7 @@ python3 manage.py runserver
 
 - 開発ブランチ運用
   - 機能単位でブランチを切り、プルリクエスト（PR）でレビューしてから main（または develop）へマージしています。
-  - 例: `feature/othello`（オセロ関連ブランチの親ブランチ）、`feature/logic`（コアロジック）、`feature/views`（ビューとテンプレート）
+  - 例: `feature/othello`（オセロ用の親ブランチ）、`feature/logic`（コアロジック）、`feature/views`（ビューとテンプレート）
 
 ------------------------------------------------------------------------
 
