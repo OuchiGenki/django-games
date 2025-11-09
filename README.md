@@ -71,9 +71,7 @@ python3 manage.py runserver
 ユニットテストは pytest または Django のテストランナーで実行できます。
 
 ```zsh
-pytest
-# または
-python manage.py test
+python3 -m pytest
 ```
 
 テストは主に `othello/` のロジック関数を対象に作成しています。
