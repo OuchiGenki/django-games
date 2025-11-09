@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}ログイン{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-center" style="min-height:60vh;">
+    <div class="card shadow-sm" style="width:420px;">
+    <div class="card-body">
+        <h3 class="card-title mb-3 text-center">ログイン</h3>
+
+        <form id="loginForm" method="POST" action="{% url 'accounts:login' %}">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        {% for field in form %}
+            <div class="mb-3">
+            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+            {% if field.errors %}<div class="text-danger small mt-1">{{ field.errors }}</div>{% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary w-100">ログイン</button>
+        </form>
+
+        <div class="text-center mt-3">
+        <a href="{% url 'accounts:signup' %}">アカウントを作成する</a>
+        </div>
+    </div>
+    </div>
+</div>
+
+<script>
+    // Django フォームの input に bootstrap の form-control を追加
+    document.querySelectorAll('#loginForm input').forEach(function(i){ i.classList.add('form-control'); });
+</script>
+{% endblock %}
