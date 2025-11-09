@@ -40,8 +40,8 @@ cd django-games
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
+python3 manage.py migrate
+python3 manage.py runserver
 ```
 
 ブラウザで `http://127.0.0.1:8000` にアクセスしてください。
