@@ -9,7 +9,7 @@
 <div class="container py-4">
   <div id="game-over-banner" class="w-100 mb-3 {% if not game.is_finished %}d-none{% endif %}">
     <div class="alert alert-secondary text-center mb-0" role="alert">
-      ゲーム終了{% if game.winner %} — 勝者: <span id="winner-name">{{ game.winner }}</span>{% endif %}
+      ゲーム終了{% if game.winner %} — 勝者: <span id="winner-name">{% if game.winner == 'B' %}黒{% elif game.winner == 'W' %}白{% endif %}</span>{% endif %}
     </div>
   </div>
   <div class="row">
