@@ -6,4 +6,5 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('hitandblow/', include('HitAndBlow.urls')),
     path('othello/', include('othello.urls')),
+    path('gomoku/', include('gomoku.urls')),
 ]
