@@ -6,10 +6,10 @@ Django で作成したミニゲーム集（ポートフォリオ）です。
 現在実装済みのゲーム:
 
 - **Gomoku（五目並べ） ← New!**
+  <img width="1440" height="811" alt="Image" src="https://github.com/user-attachments/assets/fa2ad2cc-8edb-41d9-8bf2-3519ad0a71ba" />
   - AJAX（Fetch API）で盤面を部分更新するインタラクティブ仕様
-  - CSS で碁盤（中央に線が通るスタイル）を実装
 
-- Othello（オセロ
+- Othello（オセロ)
   - コアロジックを `gomoku/game_logic.py` に分離
   - 盤面の永続化
   <img width="1440" height="790" alt="Image" src="https://github.com/user-attachments/assets/b38f8cb9-2ea1-4207-8202-9b452ec22c5a" />
