@@ -1,0 +1,81 @@
+/* 盤面ラッパーの最大幅（調整可） */
+#board-wrapper {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+/* テーブルを固定レイアウトにして列幅を均等に */
+#board {
+    width: 100%;
+    max-width: 600px; /* 盤の最大幅を 600px に揃えました */
+    margin: 0 auto; /* 横中央寄せ */
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 2px solid #9aa1a8;
+    /* 外枠 */
+    background:
+        linear-gradient(90deg,
+            rgba(208, 147, 82, 0.6),
+            rgba(192, 134, 70, 0.6) 60%,
+            rgba(208, 147, 82, 0.6)),
+        repeating-radial-gradient(ellipse at 60% 500%,
+            #c08646,
+            #c08646 0.2%,
+            #d09352 0.6%,
+            #d09352 1%);
+}
+
+#board td.cell {
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    position: relative;
+    border: 1px solid #444;
+}
+
+.cell-btn {
+    position: relative;
+    /* 擬似要素の基準 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    /* 正方形に保つ（モダンブラウザ） */
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent !important;
+    /* 既存の背景を上書き */
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.cell-btn::after {
+    content: "";
+    display: block;
+    width: 78%;
+    height: 78%;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.cell-btn.black-stone::after {
+    background: radial-gradient(circle at 30% 30%, #444, #000);
+    box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.cell-btn.white-stone::after {
+    background: radial-gradient(circle at 30% 30%, #fff, #e6e6e6);
+}
+
+#board td.cell:hover {
+    background-color: #bfeea0;
+}
+
+#board {
+    border-collapse: collapse;
+}
