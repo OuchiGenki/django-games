@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}五目並べ{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row mb-4">
+    <div class="col-md-8">
+      <h1 class="h3">五目並べ</h1>
+      <p class="text-muted">シンプルな五目並べゲーム。新しい対局を開始するか、既存の対局を再開してください。</p>
+    </div>
+    <div class="col-md-4 d-flex align-items-center justify-content-end">
+      <a href="{% url 'gomoku:new' %}" class="btn btn-primary">新しい対局を作成</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="h5 mb-3">最近の対局</h2>
+
+          {% if games %}
+          <div class="table-responsive">
+            <table class="table table-sm mb-0">
+              <thead>
+                <tr>
+                  <th>作成日時</th>
+                  <th>ターン</th>
+                  <th>状態</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for game in games %}
+                <tr>
+                  <td>{{ game.created_at|date:"Y-m-d H:i" }}</td>
+                  <td>{{ game.current_turn }}</td>
+                  <td>{% if game.is_finished %}終了{% else %}進行中{% endif %}</td>
+                  <td class="text-end">
+                    <a href="{% url 'gomoku:play' game.id %}" class="btn btn-sm btn-outline-primary">{% if game.is_finished %}履歴{% else %}再開{% endif %}</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          {% else %}
+          <p class="mb-0 text-muted">まだ対局がありません。まずは「新しい対局を作成」を押して開始してください。</p>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
