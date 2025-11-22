@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from .models import Game
 from .game_logic import init_board, is_valid_move, apply_move, is_game_over
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def index(request):
     games = Game.objects.filter(user=request.user).order_by('-created_at')
     context = {
@@ -11,6 +13,7 @@ def index(request):
     return render(request, 'gomoku/index.html', context)
 
 
+@login_required
 def new(request):
     board = init_board()
     game = Game.objects.create(
@@ -20,6 +23,7 @@ def new(request):
     return redirect('gomoku:play', game_id=game.id)
 
 
+@login_required
 def play(request, game_id):
     game = get_object_or_404(Game, id=game_id, user=request.user)
     context = {
