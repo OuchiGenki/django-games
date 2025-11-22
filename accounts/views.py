@@ -14,7 +14,7 @@ class Signup(CreateView):
 class Login(LoginView):
     form_class = LoginForm
     template_name = 'accounts/login.html'
-    next_page = 'othello:index'
+    next_page = 'gomoku:index'
 
 
 class Logout(LogoutView):
